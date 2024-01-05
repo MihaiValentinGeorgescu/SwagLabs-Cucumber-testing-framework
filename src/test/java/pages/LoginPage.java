@@ -1,21 +1,23 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.DriverFactory;
 
 public class LoginPage {
     private WebDriver driver;
 
-    @FindBy(xpath = "//input[@name='username']")
+    @FindBy(id = "user-name")
     private WebElement usernameField;
 
-    @FindBy(name = "//input[@name='password']")
+    @FindBy(id = "password")
     private WebElement passwordField;
 
-    @FindBy(xpath = "//div[@class='oxd-form-actions orangehrm-login-action']//button[@type='submit']")
+    @FindBy(id = "login-button")
     private WebElement loginButton;
 
     public LoginPage(WebDriver driver) {
@@ -24,7 +26,9 @@ public class LoginPage {
     }
 
     public void enterUsername(String username) {
-        usernameField.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+//        usernameField.click();
         usernameField.sendKeys(username);
     }
 
@@ -35,5 +39,19 @@ public class LoginPage {
 
     public void clickLoginButton() {
         loginButton.click();
+    }
+
+    public boolean checkElementAfterInvalidLogin(){
+        WebElement errorElement = driver.findElement(By.cssSelector("h3[data-test='error']"));
+
+        // Check if the element is displayed
+        if (errorElement.isDisplayed()) {
+            System.out.println("The error element is displayed.");
+            return true;
+
+        } else {
+            System.out.println("The error element is not displayed.");
+        }
+        return false;
     }
 }

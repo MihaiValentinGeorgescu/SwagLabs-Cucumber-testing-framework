@@ -7,46 +7,43 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AfterLoginPage;
 import pages.LoginPage;
 import utility.DriverFactory;
 
-public class LoginSteps extends DriverFactory {
-
+public class LogOutScenarioSteps extends DriverFactory {
     private WebDriver driver;
     private LoginPage loginPage;
 
-    @Given("the user is on the OrangeHRM login page")
+    @Given("the user is on the swaglabs login page")
     public void navigateToLoginPage() {
         getDriver(); // Ensure WebDriver is initialized
         loginPage = new LoginPage(getDriver());
         navigateTo("https://www.saucedemo.com/v1/index.html");
     }
 
-    @When("the user enters valid credentials")
+    @When("the user enters invalid credentials")
     public void enterValidCredentials() {
 //        WebDriverWait wait = new WebDriverWait(driver, 10);
 //        WebElement usernameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='username']")));
-        loginPage.enterUsername("standard_user");
-        loginPage.enterPassword("secret_sauce");
+        loginPage.enterUsername("standard_usser");
+        loginPage.enterPassword("secret_sausce");
     }
 
-    @When("clicks the Login button")
-    public void clickLoginButton() {
+    @When("clicks the Login button for invalid credentials")
+    public void clickLoginButton() throws InterruptedException {
         loginPage.clickLoginButton();
+        Thread.sleep(2000);
     }
 
-    @Then("the user should be logged in successfully")
+    @Then("the user should be see error login")
     public void verifySuccessfulLogin() throws InterruptedException {
         AfterLoginPage afterLoginPage = new AfterLoginPage(getDriver());
 
-        if (afterLoginPage.isYourElementDisplayed()) {
-            System.out.println("Element on the next page is displayed. Login flow is successful.");
-        } else {
-            System.out.println("Element on the next page is NOT displayed. Login flow failed.");
+        if(loginPage.checkElementAfterInvalidLogin()){
+            System.out.printf("yes");
+        }else{
+            System.out.printf("no");
         }
         Thread.sleep(2000);
     }
