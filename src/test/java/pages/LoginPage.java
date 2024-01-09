@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.DriverFactory;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +126,36 @@ public class LoginPage extends CommonMethods {
 
     @FindBy(xpath = "")
     private WebElement sauce_labs_tshirt_red_add_to_cart;
+
+    @FindBy(xpath = "//span[@class='fa-layers-counter shopping_cart_badge']")
+    private WebElement shopping_cart_badge;
+
+    @FindBy(xpath = "//button[@class='btn_secondary btn_inventory']")
+    private WebElement remove_item_button_cart;
+
+    @FindBy(xpath = "//button[@class='inventory_details_back_button']")
+    private WebElement inventory_details_back_button;
+
+    @FindBy(xpath = "//a[@class='btn_secondary']")
+    private WebElement continue_shopping_button;
+
+    @FindBy(xpath = "//div[@class='inventory_item_name' and text()='Sauce Labs Onesie']")
+    private WebElement remove_Sauce_Labs_Onesie;
+
+    @FindBy(xpath = "//div[@class='inventory_item_name' and text()='Sauce Labs Bike Light']")
+    private WebElement remove_Sauce_Labs_Bike_Light;
+
+    @FindBy(xpath = "//div[@class='inventory_item_name' and text()='Sauce Labs Bolt T-Shirt']")
+    private WebElement remove_Sauce_Labs_Bolt_T_Shirt;
+
+    @FindBy(xpath = "//div[@class='inventory_item_name' and text()='Sauce Labs Fleece Jacket']")
+    private WebElement remove_Sauce_Labs_Fleece_Jacket;
+
+    @FindBy(xpath = "//div[@class='inventory_item_name' and text()='Sauce Labs Backpack']")
+    private WebElement remove_Sauce_Labs_Backpack;
+
+    @FindBy(xpath = "//div[@class='inventory_item_name' and text()='Test.allTheThings() T-Shirt (Red)']")
+    private WebElement remove_T_Shirt_Red;
 
 
     public LoginPage(WebDriver driver) {
@@ -371,5 +402,53 @@ public class LoginPage extends CommonMethods {
             return true;
         }
         return false;
+    }
+
+    public void remove_item_button(String itemType){
+        switch (itemType) {
+            case "Sauce Labs Backpack":
+                click(remove_Sauce_Labs_Backpack);
+                click(remove_item_button_cart);
+                click(inventory_details_back_button);
+                click(continue_shopping_button);
+                break;
+            case "Sauce Labs Bike Light":
+                click(remove_Sauce_Labs_Bike_Light);
+                click(remove_item_button_cart);
+                click(inventory_details_back_button);
+                click(continue_shopping_button);
+                break;
+            case "Sauce Labs Bolt T-Shirt":
+                click(remove_Sauce_Labs_Bolt_T_Shirt);
+                click(remove_item_button_cart);
+                click(inventory_details_back_button);
+                click(continue_shopping_button);
+                break;
+            case "Sauce Labs Fleece Jacket":
+                click(remove_Sauce_Labs_Fleece_Jacket);
+                click(remove_item_button_cart);
+                click(inventory_details_back_button);
+                click(continue_shopping_button);
+                break;
+            case "Sauce Labs Onesie":
+                click(remove_Sauce_Labs_Onesie);
+                click(remove_item_button_cart);
+                click(inventory_details_back_button);
+                click(continue_shopping_button);
+                break;
+            case "Test.allTheThings() T-Shirt (Red)":
+                click(remove_T_Shirt_Red);
+                click(remove_item_button_cart);
+                click(inventory_details_back_button);
+                click(continue_shopping_button);
+                break;
+            default:
+                System.out.println("Unsupported item type: " + itemType);
+                break;
+        }
+    }
+
+    public boolean check_cart_is_empty(){
+        return shopping_cart_badge.isDisplayed();
     }
 }
