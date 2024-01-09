@@ -29,5 +29,5 @@ jobs:
         cache: maven
     - name: Update dependency graph
       run: |
-        javac -cp src/test/java test/java/runner/TestRunner.java
+        javac -cp src/test/java src/test/java/runner/TestRunner.java
         java -cp src/test/java runner.TestRunner
