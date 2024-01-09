@@ -28,4 +28,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Update dependency graph
-      run: 
+      run: |
+        javac -cp src runner/TestRunner.java
+        java -cp src runner.TestRunner
