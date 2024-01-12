@@ -10,9 +10,9 @@ name: Pipeline automate tests for deploy app
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "cucumberTestsV5" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "cucumberTestsV5" ]
 
 jobs:
   build:
