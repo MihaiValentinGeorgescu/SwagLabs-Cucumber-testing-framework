@@ -14,6 +14,11 @@ public class DriverFactory {
 
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
+            //run tests in headless mode
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--headless");
+            //termination of code you run tests in headless mode
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver(options);
         }

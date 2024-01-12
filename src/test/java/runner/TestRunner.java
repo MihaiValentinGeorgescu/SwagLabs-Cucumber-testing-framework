@@ -7,12 +7,15 @@ import io.cucumber.plugin.Plugin;
 import net.masterthought.cucumber.Configuration;
 import org.junit.AfterClass;
 import org.junit.runner.RunWith;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.testng.TestNGAntTask.Mode.testng;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -21,6 +24,6 @@ import java.util.List;
         plugin = {"pretty", "html:target/cucumber-reports.html"}
 )
 
-public class TestRunner {
+public class TestRunner extends AbstractTestNGCucumberTests{
 
 }
