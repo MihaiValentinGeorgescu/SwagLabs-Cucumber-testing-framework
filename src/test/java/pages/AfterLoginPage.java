@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +13,7 @@ import java.time.Duration;
 public class AfterLoginPage {
     private WebDriver driver;
 
-    @FindBy(xpath = "//p[@class='oxd-userdropdown-name']")
+    @FindBy(xpath = "//div[@class='product_label']")
     private WebElement afterLoginElement;
 
     public AfterLoginPage(WebDriver driver) {
