@@ -38,18 +38,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: cucumber-reports
-        path: src
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Download Reports
-      uses: actions/download-artifact@v2
-      with:
-        name: cucumber-reports
         path: reports
-
-    - name: List Downloaded Reports
-      run: ls reports
