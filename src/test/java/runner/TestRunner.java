@@ -21,7 +21,7 @@ import static org.testng.TestNGAntTask.Mode.testng;
 @CucumberOptions(
         features = "src/test/java/features",
         glue = {"step_Definition"},
-        plugin = {"pretty", "html:target/cucumber-reports.html"}
+        plugin = {"pretty", "html:reports/cucumber-reports.html"}
 )
 
 public class TestRunner extends AbstractTestNGCucumberTests{
