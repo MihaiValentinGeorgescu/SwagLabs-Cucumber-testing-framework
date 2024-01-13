@@ -154,6 +154,23 @@
                         </systemPropertyVariables>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>io.github.artsok</groupId>
+                    <artifactId>cucumber-reporting</artifactId>
+                    <version>5.4.0</version>
+                    <executions>
+                        <execution>
+                            <id>execution</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                        <!-- Additional configuration if needed -->
+                           </configuration>
+                      </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
