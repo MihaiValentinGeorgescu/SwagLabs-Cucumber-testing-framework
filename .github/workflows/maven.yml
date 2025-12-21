@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
@@ -30,3 +31,46 @@ jobs:
       run: |
         javac -cp src runner/TestRunner.java
         java -cp src runner.TestRunner
+=======
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Pipeline automate tests for deploy app with cucumber
+
+on:
+  push:
+    branches: [ "cucumberTestsV5" ]
+  pull_request:
+    branches: [ "cucumberTestsV5" ]
+
+jobs:
+  build:
+ 
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+     
+    - uses: browser-actions/setup-chrome@latest
+    - run: chrome --version
+     
+    - name: Build with Maven
+      run: mvn test -Dtest=runner.TestRunner -Dcucumber-reports.output-directory=src
+      
+    - name: Archive Reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: cucumber-reports
+        path: reports
+>>>>>>> origin/cucumberTestsV5
