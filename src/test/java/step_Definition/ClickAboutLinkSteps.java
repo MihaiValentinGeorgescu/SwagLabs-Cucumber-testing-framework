@@ -35,7 +35,7 @@ public class ClickAboutLinkSteps extends DriverFactory {
 
     @And("User clicks on about link")
     public void clicksOmAboutLink() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         loginPage.clickAboutLinkButton();
     }
 
